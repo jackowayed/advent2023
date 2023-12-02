@@ -27,12 +27,25 @@ def part1():
     print(answer)
     return sum(answer)
 
+def power(rounds):
+    colors = ["red", "green", "blue"]
+    p = 1
+    for c in colors:
+        p *= max(r[c] for r in rounds)
+    return p
+
 
 def part2():
-    # [line.strip() for line in fileinput.input()]
+    answer = []
     for line in fileinput.input():
-        pass
-    return
+        gid = int(re.match(r"^Game (\d+):", line).group(1))
+        parts = line.split(":")[1].split(";")
+        #import pdb
+        #pdb.set_trace()
+        rounds = [parse_round(p) for p in parts]
+        answer.append(power(rounds))
+    print(answer)
+    return sum(answer)
 
-print(part1())
-#print(part2())
+#print(part1())
+print(part2())
