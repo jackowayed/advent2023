@@ -1,8 +1,11 @@
 #!/usr/bin/env python3
 
 import collections
+import functools
 import fileinput
+import math
 import re
+
 
 
 def part1():
@@ -19,4 +22,4 @@ def part2():
     return
 
 print(part1())
-#print(part2())
+print(part2())
