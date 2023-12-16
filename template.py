@@ -9,15 +9,15 @@ import re
 
 
 def part1():
-    # [line.strip() for line in fileinput.input()]
-    for line in fileinput.input():
+    lines = [line.strip() for line in fileinput.input()]
+    for line in lines:
         pass
     return
 
 
 def part2():
-    # [line.strip() for line in fileinput.input()]
-    for line in fileinput.input():
+    lines = [line.strip() for line in fileinput.input()]
+    for line in lines:
         pass
     return
 
