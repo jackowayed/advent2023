@@ -55,7 +55,6 @@ def is_clockwise(thing, direction):
 
 
 def move_to(y, x, direction, grid):
-    print(y,x)
     if y < 0 or x < 0 or y >= len(grid) or x >= len(grid[0]):
         return
     square = grid[y][x]
@@ -83,12 +82,24 @@ def part1():
     print_energy(grid)
     return sum(sum(s.is_energized() for s in row) for row in grid)
 
+def energy_starting(lines, y, x, direction):
+    grid = [[Square(c) for c in line] for line in lines]
+    move_to(y, x, direction, grid)
+    return sum(sum(s.is_energized() for s in row) for row in grid)
 
 def part2():
     lines = [line.strip() for line in fileinput.input()]
-    for line in lines:
-        pass
-    return
+    best_energy = 0
+    for y in range(len(lines)):
+        best_energy = max(best_energy,
+                          energy_starting(lines, y, 0, RIGHT),
+                        energy_starting(lines, y, len(lines[0]) - 1, LEFT))
+    for x in range(len(lines[0])):
+        best_energy = max(best_energy,
+                          energy_starting(lines, 0, x, DOWN),
+                        energy_starting(lines, len(lines) - 1, x, UP))
+        
+    return best_energy
 
-print(part1())
+#print(part1())
 print(part2())
